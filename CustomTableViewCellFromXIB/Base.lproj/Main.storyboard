@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0P7-cV-klc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A238m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0P7-cV-klc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,7 +39,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qq9-mA-4w7">
-                                <rect key="frame" x="0.0" y="175" width="375" height="443"/>
+                                <rect key="frame" x="0.0" y="163" width="375" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="SzD-dT-P9F"/>
@@ -47,7 +47,7 @@
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search here" translatesAutoresizingMaskIntoConstraints="NO" id="TCb-L5-xQo">
-                                <rect key="frame" x="16" y="113" width="308" height="56"/>
+                                <rect key="frame" x="16" y="113" width="308" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVr-ea-tGY">
@@ -114,7 +114,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="VIEW POST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4V-Ki-48J">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIEW POST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4V-Ki-48J">
                                     <rect key="frame" x="42" y="16" width="90" height="32"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="O6T-zw-WfD"/>
@@ -159,7 +159,7 @@
                                 <rect key="frame" x="0.0" y="84" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ygp-Qc-ogp" id="134-cO-PzL">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -782,7 +782,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Forgot Password"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxi-32-BDr">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxi-32-BDr">
                                         <rect key="frame" x="229" y="153" width="81" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="JGA-M0-MB2"/>
@@ -920,11 +920,30 @@
                                     <constraint firstItem="va7-5v-nea" firstAttribute="top" secondItem="zQE-FA-Mzc" secondAttribute="bottom" constant="4" id="vrm-ha-3Mx"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3oT-I8-gas">
+                                <rect key="frame" x="127" y="86" width="120" height="120"/>
+                                <subviews>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steve_jobs" translatesAutoresizingMaskIntoConstraints="NO" id="yyo-bh-hkK">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yyo-bh-hkK" secondAttribute="trailing" id="4nW-S3-AaI"/>
+                                    <constraint firstItem="yyo-bh-hkK" firstAttribute="top" secondItem="3oT-I8-gas" secondAttribute="top" id="9Ja-cq-FiR"/>
+                                    <constraint firstAttribute="width" constant="120" id="Ijb-Lh-peo"/>
+                                    <constraint firstAttribute="bottom" secondItem="yyo-bh-hkK" secondAttribute="bottom" id="Ur6-0A-ndL"/>
+                                    <constraint firstItem="yyo-bh-hkK" firstAttribute="leading" secondItem="3oT-I8-gas" secondAttribute="leading" id="enc-ny-knI"/>
+                                    <constraint firstAttribute="height" constant="120" id="gZf-lo-mRN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="5Mt-xj-f1y" firstAttribute="top" secondItem="3oT-I8-gas" secondAttribute="bottom" constant="8" id="CzS-8g-eIe"/>
                             <constraint firstAttribute="trailing" secondItem="5Mt-xj-f1y" secondAttribute="trailing" constant="29" id="FX5-Ay-Oty"/>
                             <constraint firstItem="5Mt-xj-f1y" firstAttribute="centerX" secondItem="x5k-W4-Jg1" secondAttribute="centerX" id="KMn-vU-kQ5"/>
+                            <constraint firstItem="3oT-I8-gas" firstAttribute="centerX" secondItem="5Mt-xj-f1y" secondAttribute="centerX" id="qbx-6P-4TE"/>
                             <constraint firstItem="5Mt-xj-f1y" firstAttribute="leading" secondItem="x5k-W4-Jg1" secondAttribute="leading" constant="28" id="uBN-Tf-mZ6"/>
                             <constraint firstItem="5Mt-xj-f1y" firstAttribute="centerY" secondItem="x5k-W4-Jg1" secondAttribute="centerY" id="uNk-Uv-hte"/>
                         </constraints>
@@ -933,6 +952,7 @@
                         <outlet property="confirmpass" destination="va7-5v-nea" id="TZQ-bg-3jo"/>
                         <outlet property="emailId" destination="WsD-v2-ng2" id="Q61-rq-FE0"/>
                         <outlet property="password" destination="zQE-FA-Mzc" id="wh3-AL-dvY"/>
+                        <outlet property="profileImageView" destination="yyo-bh-hkK" id="eUz-Ld-LIA"/>
                         <outlet property="userName" destination="slM-hG-LYb" id="HTJ-Rr-EX8"/>
                     </connections>
                 </viewController>
@@ -968,7 +988,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0P7-cV-klc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XaO-kR-wRh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XaO-kR-wRh">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -991,6 +1011,7 @@
         <image name="phone-receiver" width="24" height="24"/>
         <image name="radio_active" width="24" height="24"/>
         <image name="radio_inactive" width="24" height="24"/>
+        <image name="steve_jobs" width="400" height="400"/>
         <image name="viewpst" width="32" height="32"/>
     </resources>
 </document>

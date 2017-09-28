@@ -15,11 +15,18 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailId: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confirmpass: UITextField!
+    @IBOutlet weak var profileImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+       //profileImageView.translateAutoresizingMaskIntoConstraints = false
+        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target:self,action: #selector(handleSelectProfileImageView)))
+       // profileImageView.userInterationEnabled = true
+    }
+    
+    func handleSelectProfileImageView(){
+      print(123)
     }
 
     override func didReceiveMemoryWarning() {
