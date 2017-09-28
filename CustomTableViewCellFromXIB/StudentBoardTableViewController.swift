@@ -29,6 +29,10 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
     var image:String?
     var desc:String?
     var name:String?
+    var userN:String?
+    var uid:String?
+    
+    
     
     
     override func viewDidLoad() {
@@ -127,28 +131,17 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         let txt = cell.inputText.text!
         data1.append(cmtData(name:notice!, cmt: txt, imag: image!))
         
+    // Adding comment message to firebase database
         let ref = Database.database().reference()
-                Auth.auth().addStateDidChangeListener { (auth, user) in
-                    print("user id=\(String(describing: user?.uid))")
-                    guard let uid = user?.uid else{
-                        return
-                    }
-                let message = ref.child("Messages").childByAutoId().child(uid)
-                let user = ref.child("Users").child(uid).child("name")
-                    user.observeSingleEvent(of: .value, with: { (DataSnapshot) in
-                       var name = DataSnapshot.value as? String
-                        
-                        let values = ["name":name,"email":txt]
-                        message.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                            if err != nil{
-                                print(err)
-                                return
-                            }
-                        })
-                        
-                    })
+        let message = ref.child("Messages").childByAutoId().child(uid!)
+        let values = ["name":userN,"text":txt]
+        message.updateChildValues(values, withCompletionBlock: { (err, ref) in
+            if err != nil{
+                print(err)
+                return
+            }
+        })
         self.tableView.reloadData()
-        }
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
@@ -180,4 +173,6 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         func cancelButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
+    
 }

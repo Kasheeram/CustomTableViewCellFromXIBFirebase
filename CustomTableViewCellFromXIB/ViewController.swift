@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,MyProtocol {
@@ -24,9 +24,33 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
    var searchActive : Bool = false
    var filteredData: [String]!
+    var userN:String?
+    var uid:String?
+    
+    var users = [User]()
+    
+    let ref = Database.database().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+         fetchUser()
+        
+//        let ref = Database.database().reference()
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let uid = user?.uid else{
+                return
+            }
+            self.uid = uid
+            let user = self.ref.child("Users").child(uid).child("name")
+            user.observeSingleEvent(of: .value, with: { (DataSnapshot) in
+                self.userN = DataSnapshot.value as? String
+            })
+        }
+        
+        
+        
+        
+        
     
         filteredData = cellData2
         searchController.delegate = self
@@ -81,7 +105,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return filteredData.count
+        return users.count
         
     }
     
@@ -98,8 +122,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
             if indexPath.row == 0{
                 let cell = Bundle.main.loadNibNamed("SponseredTableViewCell", owner: self, options: nil)?.first as! SponseredTableViewCell
-                cell.nameLabel.text = filteredData[indexPath.row]
-                cell.profilePic.image = UIImage(named:images[filteredData[indexPath.row]]!)
+               let user = users[indexPath.row]
+                cell.nameLabel.text = user.name
+                //cell.nameLabel.text = filteredData[indexPath.row]
+//                cell.profilePic.image = UIImage(named:images[filteredData[indexPath.row]]!)
                 cell.profilePic.layer.cornerRadius = 21
                 cell.profilePic.layer.masksToBounds = true
                 cell.commentButton.layer.cornerRadius = 0.5 * cell.commentButton.bounds.size.width
@@ -109,8 +135,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 return cell
             }else{
             let cell = Bundle.main.loadNibNamed("StudentTableViewCell", owner: self, options: nil)?.first as! StudentTableViewCell
-            cell.postNameLabel.text = filteredData[indexPath.row]
-            cell.profilePicImageView.image = UIImage(named:images[filteredData[indexPath.row]]!)
+                let user = users[indexPath.row]
+                cell.postNameLabel.text = user.name
+            //cell.postNameLabel.text = filteredData[indexPath.row]
+           // cell.profilePicImageView.image = UIImage(named:images[filteredData[indexPath.row]]!)
             cell.profilePicImageView.layer.cornerRadius = 21
             cell.profilePicImageView.layer.masksToBounds = true
             cell.commentButton.layer.cornerRadius = 0.5 * cell.commentButton.bounds.size.width
@@ -140,6 +168,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             vcOBJ.notice = filteredData[indexPath.row]
             vcOBJ.image = images[filteredData[indexPath.row]]
             vcOBJ.desc = descriptns[indexPath.row]
+            vcOBJ.userN = self.userN
+            vcOBJ.uid = self.uid
             navigationController?.pushViewController(vcOBJ, animated: true)
             
         }
@@ -206,6 +236,21 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cellData2 = filteredData
         descriptns.append(valueSent[0])
         self.tableView.reloadData()
+    }
+    
+    func fetchUser(){
+        self.ref.child("Users").observe(.childAdded, with: {(DataSnapshot) in
+            if let dictionary = DataSnapshot.value as? [String:AnyObject]{
+                let user = User()
+                user.setValuesForKeys(dictionary)
+               // print(user.name,user.email)
+                self.users.append(user)
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+               
+            }
+        })
     }
 }
 

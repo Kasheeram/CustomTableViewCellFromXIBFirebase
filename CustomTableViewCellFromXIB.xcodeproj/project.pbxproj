@@ -31,6 +31,7 @@
 		9275E18D1F7387D10051651B /* CommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9275E18B1F7387D10051651B /* CommentsTableViewCell.xib */; };
 		9275E18F1F73B52E0051651B /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9275E18E1F73B52E0051651B /* Comments.swift */; };
 		92B026311F7CE99E00AAD65F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92B026301F7CE99E00AAD65F /* GoogleService-Info.plist */; };
+		92B026331F7D1DBC00AAD65F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B026321F7D1DBC00AAD65F /* User.swift */; };
 		A30DAE3C9A063B5C745C33D5 /* Pods_CustomTableViewCellFromXIB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578D3DB8015CD167D25842A9 /* Pods_CustomTableViewCellFromXIB.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		9275E18B1F7387D10051651B /* CommentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsTableViewCell.xib; sourceTree = "<group>"; };
 		9275E18E1F73B52E0051651B /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		92B026301F7CE99E00AAD65F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		92B026321F7D1DBC00AAD65F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0868C3508F75CF4FD27BB38 /* Pods-CustomTableViewCellFromXIB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomTableViewCellFromXIB.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomTableViewCellFromXIB/Pods-CustomTableViewCellFromXIB.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 				2B4C67201F72419900BCA39B /* ViewController.swift */,
 				9275E1831F737E900051651B /* Board */,
 				2B4C67221F72419900BCA39B /* Main.storyboard */,
+				92B026321F7D1DBC00AAD65F /* User.swift */,
 				92282C8D1F7CDB34007B8C5E /* RegisterViewController.swift */,
 				92282C8B1F7CD497007B8C5E /* LoginViewController.swift */,
 				92254B021F7A7465008867D9 /* UserInfoViewController.swift */,
@@ -405,6 +408,7 @@
 				9275E18F1F73B52E0051651B /* Comments.swift in Sources */,
 				9275E1851F73870A0051651B /* StudentBoardTableViewController.swift in Sources */,
 				2B4C671F1F72419900BCA39B /* AppDelegate.swift in Sources */,
+				92B026331F7D1DBC00AAD65F /* User.swift in Sources */,
 				92254B031F7A7465008867D9 /* UserInfoViewController.swift in Sources */,
 				2B4C67521F7248FD00BCA39B /* StudentTableViewCell.swift in Sources */,
 				9229F3341F7A5DFD00ED62B0 /* AddPostViewController.swift in Sources */,
