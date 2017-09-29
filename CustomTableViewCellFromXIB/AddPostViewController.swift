@@ -231,23 +231,24 @@ class AddPostViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                     if let userDict = snapshot.value as? [String:AnyObject] {
                         cUser.setValuesForKeys(userDict)
                     }
+                   
                     
+                    let posts = ref.child("Posts").childByAutoId().child(uid)
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let myString = formatter.string(from: Date())
+                    let values = ["name":cUser.name,"uid":uid,"category":self.categoryTxtField.text!,"tital":self.titalTxtField.text!,"desc":self.descTxtView.text!,"imageUrl":cUser.profileImageUrl,"date":myString]
+                    posts.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                        if err != nil{
+                            print(err)
+                            return
+                        }
+                    })
 
                 })
                 
-                let posts = ref.child("Posts").childByAutoId().child(uid)
                 
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                let myString = formatter.string(from: Date())
-              
-                let values = ["name":cUser.name,"uid":uid,"category":self.categoryTxtField.text!,"tital":self.titalTxtField.text!,"desc":self.descTxtView.text!,"imageUrl":cUser.profileImageUrl,"date":myString]
-                posts.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                    if err != nil{
-                        print(err)
-                        return
-                    }
-                })
+                
                 
             }
 
