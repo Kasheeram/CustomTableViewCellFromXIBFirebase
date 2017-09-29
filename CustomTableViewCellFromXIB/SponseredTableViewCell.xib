@@ -22,8 +22,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ucK-j7-HQa">
                         <rect key="frame" x="8" y="33" width="42" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="42" id="Eg6-Dk-m3u"/>
-                            <constraint firstAttribute="width" constant="42" id="oKa-bm-n1W"/>
+                            <constraint firstAttribute="width" constant="42" id="RXX-bj-0ge"/>
+                            <constraint firstAttribute="height" constant="42" id="d2c-t8-frK"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18-Sep-2017 | 04:33 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMg-RB-ByW">
@@ -71,8 +71,9 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebz-kS-cvP">
-                        <rect key="frame" x="63" y="30" width="211" height="25"/>
+                        <rect key="frame" x="62" y="39" width="212" height="25"/>
                         <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="0Ha-h7-7wO"/>
                             <constraint firstAttribute="height" constant="25" id="jXy-LP-DK2"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -82,19 +83,18 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ewj-RK-iyA" firstAttribute="leading" secondItem="N72-A9-OUa" secondAttribute="trailing" constant="2" id="4CF-Kj-0Y9"/>
-                    <constraint firstItem="ucK-j7-HQa" firstAttribute="top" secondItem="RAD-6A-tZ8" secondAttribute="bottom" constant="15" id="4i9-IT-jdF"/>
-                    <constraint firstItem="ebz-kS-cvP" firstAttribute="top" secondItem="nMg-RB-ByW" secondAttribute="bottom" constant="8" id="5i2-1I-eN2"/>
+                    <constraint firstItem="ebz-kS-cvP" firstAttribute="top" secondItem="nMg-RB-ByW" secondAttribute="bottom" constant="17" id="5i2-1I-eN2"/>
                     <constraint firstAttribute="bottom" secondItem="N72-A9-OUa" secondAttribute="bottom" constant="5" id="CY0-dn-f2V"/>
+                    <constraint firstItem="ebz-kS-cvP" firstAttribute="leading" secondItem="ucK-j7-HQa" secondAttribute="trailing" constant="12" id="HPb-SQ-A54"/>
+                    <constraint firstItem="ucK-j7-HQa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Mk1-7H-Ue0"/>
                     <constraint firstAttribute="bottom" secondItem="ewj-RK-iyA" secondAttribute="bottom" constant="8" id="SWg-vl-u3q"/>
-                    <constraint firstAttribute="bottom" secondItem="ucK-j7-HQa" secondAttribute="bottom" constant="12" id="TCd-Ck-usj"/>
                     <constraint firstItem="RAD-6A-tZ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-5" id="VSt-JG-9Kq"/>
                     <constraint firstAttribute="trailing" secondItem="ewj-RK-iyA" secondAttribute="trailing" constant="6" id="W0T-Ks-Rnk"/>
+                    <constraint firstItem="ucK-j7-HQa" firstAttribute="top" secondItem="RAD-6A-tZ8" secondAttribute="bottom" constant="15" id="XpJ-Ju-ZTG"/>
                     <constraint firstItem="nMg-RB-ByW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="YqB-9U-lIG"/>
-                    <constraint firstItem="ucK-j7-HQa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="hwf-n9-e3M"/>
                     <constraint firstAttribute="trailing" secondItem="ebz-kS-cvP" secondAttribute="trailing" constant="46" id="ot0-HT-MYj"/>
                     <constraint firstAttribute="trailing" secondItem="nMg-RB-ByW" secondAttribute="trailing" constant="6" id="ouM-3d-VlJ"/>
                     <constraint firstItem="RAD-6A-tZ8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="s0C-CX-Ml4"/>
-                    <constraint firstItem="ebz-kS-cvP" firstAttribute="leading" secondItem="ucK-j7-HQa" secondAttribute="trailing" constant="13" id="v5C-ZT-4ik"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -104,7 +104,7 @@
                 <outlet property="profilePic" destination="ucK-j7-HQa" id="Agu-WH-NN4"/>
                 <outlet property="sponseredButton" destination="RAD-6A-tZ8" id="1jT-kg-PCz"/>
             </connections>
-            <point key="canvasLocation" x="-144" y="-39"/>
+            <point key="canvasLocation" x="-144" y="-39.5"/>
         </tableViewCell>
     </objects>
 </document>

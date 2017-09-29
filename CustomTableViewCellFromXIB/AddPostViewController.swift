@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import Firebase
 
 protocol MyProtocol {
     func setResultOfBusinessLogic(valueSent: [String])
 }
+
+class CurrentUser: NSObject {
+    var name:String?
+    var email:String?
+    var profileImageUrl:String?
+    var college:String?
+    var branch:String?
+    var phone:String?
+}
+
 
 class AddPostViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate,UITextFieldDelegate{
     @IBOutlet weak var categoryTxtField: UITextField!
@@ -206,6 +217,51 @@ class AddPostViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
         var descSize = desc.characters.count
         
         if size > 0 && tsize > 0 && descSize > 0{
+            
+            Auth.auth().addStateDidChangeListener { (auth, user) in
+                guard let uid = user?.uid else{
+                    return
+                }
+                //self.uid = uid
+                
+            let cUser = CurrentUser()
+            let ref = Database.database().reference()
+                
+                ref.child("Users").child(uid).observeSingleEvent(of: .value, with: { snapshot in
+                    if let userDict = snapshot.value as? [String:AnyObject] {
+                        cUser.setValuesForKeys(userDict)
+                    }
+                    
+
+                })
+                
+                let posts = ref.child("Posts").childByAutoId().child(uid)
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                let myString = formatter.string(from: Date())
+              
+                let values = ["name":cUser.name,"uid":uid,"category":self.categoryTxtField.text!,"tital":self.titalTxtField.text!,"desc":self.descTxtView.text!,"imageUrl":cUser.profileImageUrl,"date":myString]
+                posts.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                    if err != nil{
+                        print(err)
+                        return
+                    }
+                })
+                
+            }
+
+                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
                 let postData = [descTxtView.text,categoryTxtField.text,priority,titalTxtField.text]
                 myProtocol?.setResultOfBusinessLogic(valueSent: postData as! [String])
                 navigationController?.popViewController(animated: true)

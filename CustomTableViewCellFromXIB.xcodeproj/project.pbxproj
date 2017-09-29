@@ -24,6 +24,8 @@
 		92282C8C1F7CD497007B8C5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92282C8B1F7CD497007B8C5E /* LoginViewController.swift */; };
 		92282C8E1F7CDB34007B8C5E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92282C8D1F7CDB34007B8C5E /* RegisterViewController.swift */; };
 		9229F3341F7A5DFD00ED62B0 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229F3331F7A5DFD00ED62B0 /* AddPostViewController.swift */; };
+		926A5C091F7E3AFB00891F45 /* RegisterViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A5C081F7E3AFB00891F45 /* RegisterViewController+handlers.swift */; };
+		926A5C0C1F7E6CD900891F45 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A5C0B1F7E6CD900891F45 /* Extensions.swift */; };
 		9275E1851F73870A0051651B /* StudentBoardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9275E1841F73870A0051651B /* StudentBoardTableViewController.swift */; };
 		9275E1881F7387B90051651B /* ProfileDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9275E1861F7387B90051651B /* ProfileDetailsTableViewCell.swift */; };
 		9275E1891F7387B90051651B /* ProfileDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9275E1871F7387B90051651B /* ProfileDetailsTableViewCell.xib */; };
@@ -78,6 +80,8 @@
 		92282C8B1F7CD497007B8C5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		92282C8D1F7CDB34007B8C5E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9229F3331F7A5DFD00ED62B0 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		926A5C081F7E3AFB00891F45 /* RegisterViewController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterViewController+handlers.swift"; sourceTree = "<group>"; };
+		926A5C0B1F7E6CD900891F45 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9275E1841F73870A0051651B /* StudentBoardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentBoardTableViewController.swift; sourceTree = "<group>"; };
 		9275E1861F7387B90051651B /* ProfileDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		9275E1871F7387B90051651B /* ProfileDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileDetailsTableViewCell.xib; sourceTree = "<group>"; };
@@ -157,11 +161,13 @@
 		2B4C671D1F72419800BCA39B /* CustomTableViewCellFromXIB */ = {
 			isa = PBXGroup;
 			children = (
+				926A5C0A1F7E6C9B00891F45 /* Helpers */,
 				92B026301F7CE99E00AAD65F /* GoogleService-Info.plist */,
 				2B4C671E1F72419900BCA39B /* AppDelegate.swift */,
 				2B4C67201F72419900BCA39B /* ViewController.swift */,
 				9275E1831F737E900051651B /* Board */,
 				2B4C67221F72419900BCA39B /* Main.storyboard */,
+				926A5C081F7E3AFB00891F45 /* RegisterViewController+handlers.swift */,
 				92B026321F7D1DBC00AAD65F /* User.swift */,
 				92282C8D1F7CDB34007B8C5E /* RegisterViewController.swift */,
 				92282C8B1F7CD497007B8C5E /* LoginViewController.swift */,
@@ -196,6 +202,14 @@
 				2B4C67401F72419B00BCA39B /* Info.plist */,
 			);
 			path = CustomTableViewCellFromXIBUITests;
+			sourceTree = "<group>";
+		};
+		926A5C0A1F7E6C9B00891F45 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				926A5C0B1F7E6CD900891F45 /* Extensions.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		9275E1831F737E900051651B /* Board */ = {
@@ -403,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92282C8C1F7CD497007B8C5E /* LoginViewController.swift in Sources */,
+				926A5C091F7E3AFB00891F45 /* RegisterViewController+handlers.swift in Sources */,
 				2B4C67211F72419900BCA39B /* ViewController.swift in Sources */,
 				2B4C674E1F7244EC00BCA39B /* UniversityTableViewCell.swift in Sources */,
 				9275E18F1F73B52E0051651B /* Comments.swift in Sources */,
@@ -412,6 +427,7 @@
 				92254B031F7A7465008867D9 /* UserInfoViewController.swift in Sources */,
 				2B4C67521F7248FD00BCA39B /* StudentTableViewCell.swift in Sources */,
 				9229F3341F7A5DFD00ED62B0 /* AddPostViewController.swift in Sources */,
+				926A5C0C1F7E6CD900891F45 /* Extensions.swift in Sources */,
 				9275E1881F7387B90051651B /* ProfileDetailsTableViewCell.swift in Sources */,
 				92282C8E1F7CDB34007B8C5E /* RegisterViewController.swift in Sources */,
 				9275E18C1F7387D10051651B /* CommentsTableViewCell.swift in Sources */,

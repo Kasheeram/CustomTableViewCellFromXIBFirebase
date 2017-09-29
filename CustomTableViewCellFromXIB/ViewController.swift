@@ -48,9 +48,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         
         
-        
-        
-        
+
     
         filteredData = cellData2
         searchController.delegate = self
@@ -124,8 +122,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 let cell = Bundle.main.loadNibNamed("SponseredTableViewCell", owner: self, options: nil)?.first as! SponseredTableViewCell
                let user = users[indexPath.row]
                 cell.nameLabel.text = user.name
+                
                 //cell.nameLabel.text = filteredData[indexPath.row]
 //                cell.profilePic.image = UIImage(named:images[filteredData[indexPath.row]]!)
+                
+                if let profileImageUrl = user.profileImageUrl {
+                    cell.profilePic.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+                    
+                }
                 cell.profilePic.layer.cornerRadius = 21
                 cell.profilePic.layer.masksToBounds = true
                 cell.commentButton.layer.cornerRadius = 0.5 * cell.commentButton.bounds.size.width
@@ -139,6 +143,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 cell.postNameLabel.text = user.name
             //cell.postNameLabel.text = filteredData[indexPath.row]
            // cell.profilePicImageView.image = UIImage(named:images[filteredData[indexPath.row]]!)
+            
+                if let profileImageUrl = user.profileImageUrl {
+                    cell.profilePicImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+                }
+                
             cell.profilePicImageView.layer.cornerRadius = 21
             cell.profilePicImageView.layer.masksToBounds = true
             cell.commentButton.layer.cornerRadius = 0.5 * cell.commentButton.bounds.size.width
@@ -152,6 +161,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if mySegmentControl.selectedSegmentIndex == 0{
             return 70
+        }else if indexPath.row == 0{
+            return 87
         }else{
             return 70
         }
