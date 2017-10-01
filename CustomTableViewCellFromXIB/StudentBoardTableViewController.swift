@@ -35,8 +35,6 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
             }
         })
         
-        
-        
         fetchComments()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
@@ -83,7 +81,6 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         }
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = Bundle.main.loadNibNamed("ProfileDetailsTableViewCell", owner: self, options: nil)?.first as! ProfileDetailsTableViewCell
@@ -97,8 +94,6 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
             cell.detailsLabel.text = desc
             cell.postedByLabel.text = userN
             cell.dateLabel.text = date
-//            cell.profilePicofCommentedUser.image = UIImage(named:currentuser.profileImageUrl)
-            
             if let profileImageUrl = currentuser.profileImageUrl {
                 cell.profilePicofCommentedUser.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
             }
@@ -122,10 +117,8 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
                 cell.userImage.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
             }
             
-            //cell.userImage.image = UIImage(named: cmt.image!)
             cell.userImage.layer.cornerRadius = 17
             cell.userImage.layer.masksToBounds = true
-            //cell.userImage.backgroundColor = UIColor.black
             tableView.estimatedRowHeight = 50
             tableView.rowHeight = UITableViewAutomaticDimension
             return cell
@@ -181,12 +174,10 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         navigationController?.popViewController(animated: true)
     }
     
+    
     func fetchComments() {
-        
             self.ref.child("Comments").child(self.postID!).observe(.childAdded, with: {(DataSnapshot) in
                 if let dictionary = DataSnapshot.value as? [String:AnyObject]{
-                    print("123\(dictionary)")
-                    
                     let user = Comments()
                     user.setValuesForKeys(dictionary)
                     print("123\(user.text)")

@@ -28,7 +28,7 @@
                         <color key="textColor" red="0.61561745405197144" green="0.61572599411010742" blue="0.61561065912246704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="qwer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sB-32-vEi">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="qwer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sB-32-vEi">
                         <rect key="frame" x="8" y="52" width="184" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="GlK-Jo-a1u"/>
@@ -70,6 +70,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark As Inappropriate" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lk-ON-rRs">
                         <rect key="frame" x="205" y="58" width="107" height="12"/>
                         <constraints>
+                            <constraint firstAttribute="width" constant="107" id="7Qg-cQ-mA1"/>
                             <constraint firstAttribute="height" constant="12" id="KM8-We-iUD"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>

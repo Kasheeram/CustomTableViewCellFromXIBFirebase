@@ -23,13 +23,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var uid:String?
     var studentBoard = [StudentBoard]()
     var postID = [String]()
+    var comt = [Comments]()
+    var comments = [[Comments]]()
     
     let ref = Database.database().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchUser()
+        //fetchUser()
+        
+       // fetchComments()
+        
         Auth.auth().addStateDidChangeListener { (auth, user) in
             guard let uid = user?.uid else{
                 return
@@ -124,6 +129,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
                 cell.profilePic.layer.cornerRadius = 21
                 cell.profilePic.layer.masksToBounds = true
+//                cell.commentButton.setTitle(comments[indexPath.row].count as! String, for: .normal)
+               // print("kashee123\(comments[indexPath.row].count)")
                 cell.commentButton.layer.cornerRadius = 0.5 * cell.commentButton.bounds.size.width
                 cell.commentButton.clipsToBounds = true
                 cell.sponseredButton.layer.cornerRadius = 3
@@ -143,6 +150,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 
             cell.profilePicImageView.layer.cornerRadius = 21
             cell.profilePicImageView.layer.masksToBounds = true
+                
+//                print("kashee123\(comments[indexPath.row].count)")
+//            cell.commentButton.setTitle(comments[indexPath.row].count as! String, for: .normal)
             cell.commentButton.layer.cornerRadius = 0.5 * cell.commentButton.bounds.size.width
             cell.commentButton.clipsToBounds = true
             return cell
@@ -209,6 +219,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewWillAppear(_ animated: Bool) {
         //fetchUser()
+        
+        
+        print("1234")
+        studentBoard.removeAll()
+        fetchUser()
+//        fetchComments()
+
     }
     
     @IBAction func segmentActions(_ sender: Any) {
@@ -240,7 +257,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //        cellData2 = filteredData
 //        descriptns.append(valueSent[0])
 //        self.tableView.reloadData()
-        //fetchUser()
+        
+//        studentBoard.removeAll()
+//        fetchUser()
         
     }
     
@@ -255,17 +274,48 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                             let user = StudentBoard()
                             user.setValuesForKeys(dictionary)
                             self.studentBoard.append(user)
+                            
+                            
                             DispatchQueue.main.async(execute: {
                                 self.tableView.reloadData()
+//                                self.fetchComments()
+                                
                             })
                         }
                     })
+                   
                 }
             }
         })
-        
+       
     }
   
-    
+    func fetchComments(){
+        //print("123kashee")
+        
+        for i in 0..<postID.count {
+            self.ref.child("Comments").child(self.postID[i]).observe(.childAdded, with: {(DataSnapshot) in
+                if let dictionary = DataSnapshot.value as? [String:AnyObject]{
+                    let user = Comments()
+                    user.setValuesForKeys(dictionary)
+                   // print("123\(user.text)")
+                    self.comt.append(user)
+//                    DispatchQueue.main.async(execute: {
+//                        self.tableView.reloadData()
+//                        self.comments.append(self.comt)
+//                        
+//                    })
+                    
+                }
+            })
+            
+           comments.append(comt)
+//            print("kasheeram123=\(comments.count)")
+//            self.comments.append(self.comt)
+            
+//            print("postId=\(postID[i])")
+        }
+
+    }
 }
 
