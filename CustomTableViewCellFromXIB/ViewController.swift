@@ -129,8 +129,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
                 cell.profilePic.layer.cornerRadius = 21
                 cell.profilePic.layer.masksToBounds = true
-//                cell.commentButton.setTitle(comments[indexPath.row].count as! String, for: .normal)
-               // print("kashee123\(comments[indexPath.row].count)")
+                let data = comments[indexPath.row]
+                let countcmt = data.count
+                cell.commentButton.setTitle(String(countcmt), for: .normal)
                 cell.commentButton.layer.cornerRadius = 0.5 * cell.commentButton.bounds.size.width
                 cell.commentButton.clipsToBounds = true
                 cell.sponseredButton.layer.cornerRadius = 3
@@ -150,9 +151,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 
             cell.profilePicImageView.layer.cornerRadius = 21
             cell.profilePicImageView.layer.masksToBounds = true
-                
-//                print("kashee123\(comments[indexPath.row].count)")
-//            cell.commentButton.setTitle(comments[indexPath.row].count as! String, for: .normal)
+
+                let data = comments[indexPath.row]
+                let countcmt = data.count
+                cell.commentButton.setTitle(String(countcmt), for: .normal)
             cell.commentButton.layer.cornerRadius = 0.5 * cell.commentButton.bounds.size.width
             cell.commentButton.clipsToBounds = true
             return cell
@@ -269,13 +271,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 for child in result {
                     let userKey = child.key
                     self.postID.append(userKey)
+                    self.fetchComments(pid:userKey)
                     self.ref.child("Posts").child(userKey).observe(.childAdded, with: {(DataSnapshot) in
                         if let dictionary = DataSnapshot.value as? [String:AnyObject]{
                             let user = StudentBoard()
                             user.setValuesForKeys(dictionary)
                             self.studentBoard.append(user)
-                            
-                            
                             DispatchQueue.main.async(execute: {
                                 self.tableView.reloadData()
 //                                self.fetchComments()
@@ -290,32 +291,28 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
        
     }
   
-    func fetchComments(){
+    func fetchComments(pid:String) {
         //print("123kashee")
+        self.comt.removeAll()
         
-        for i in 0..<postID.count {
-            self.ref.child("Comments").child(self.postID[i]).observe(.childAdded, with: {(DataSnapshot) in
+            self.ref.child("Comments").child(pid).observe(.childAdded, with: {(DataSnapshot) in
                 if let dictionary = DataSnapshot.value as? [String:AnyObject]{
                     let user = Comments()
                     user.setValuesForKeys(dictionary)
                    // print("123\(user.text)")
                     self.comt.append(user)
-//                    DispatchQueue.main.async(execute: {
-//                        self.tableView.reloadData()
-//                        self.comments.append(self.comt)
-//                        
-//                    })
+                    
+                   
+                    DispatchQueue.main.async(execute: {
+                      
+                    })
                     
                 }
+                self.comments.append(self.comt)
+                
             })
-            
-           comments.append(comt)
-//            print("kasheeram123=\(comments.count)")
-//            self.comments.append(self.comt)
-            
-//            print("postId=\(postID[i])")
-        }
-
+        
+        
     }
 }
 
