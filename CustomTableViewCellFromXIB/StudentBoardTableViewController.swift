@@ -9,38 +9,35 @@
 import UIKit
 import Firebase
 
-class cmtData{
-    var name:String?
-    var cmt:String?
-    var imag:String?
-    
-    init(name:String,cmt:String,imag:String) {
-        self.name = name
-        self.cmt = cmt
-        self.imag = imag
-    }
-}
-
 class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate {
     
     let noteCell:ProfileDetailsTableViewCell! = nil
-    var data1 = [cmtData]()
     var notice:String?
     var image:String?
     var desc:String?
     var name:String?
     var userN:String?
     var uid:String?
+    var date:String?
+    var postID:String?
     
-    
-    
+    var commentsData = [Comments]()
+    let ref = Database.database().reference()
+    let userID : String = (Auth.auth().currentUser?.uid)!
+    let currentuser = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        data1.append(cmtData(name: "barak ubama", cmt: "Hi bro how are you", imag: "barak ubama"))
-        data1.append(cmtData(name: "steve jobs", cmt: "I am fine what about you I am fine what about you I am fine what about you I am fine what about you", imag: "steve_jobs"))
+        ref.child("Users").child(userID).observeSingleEvent(of: .value, with: {(DataSnapshot) in
+            if let dictionary = DataSnapshot.value as? [String:AnyObject]{
+                self.currentuser.setValuesForKeys(dictionary)
+            }
+        })
         
+        
+        
+        fetchComments()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
         let button = UIButton.init(type: .custom)
@@ -82,7 +79,7 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         if section == 0{
              return 1
         }else{
-            return data1.count
+            return commentsData.count
         }
     }
 
@@ -98,8 +95,14 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
             cell.inputText.layer.addSublayer(bottomLine)
             cell.nameLabel.text = notice
             cell.detailsLabel.text = desc
-            cell.profilePicofCommentedUser.image = UIImage(named:image!)
-            cell.numberOfCommentLabel.text = "(\(data1.count))"
+            cell.postedByLabel.text = userN
+            cell.dateLabel.text = date
+//            cell.profilePicofCommentedUser.image = UIImage(named:currentuser.profileImageUrl)
+            
+            if let profileImageUrl = currentuser.profileImageUrl {
+                cell.profilePicofCommentedUser.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+            }
+            cell.numberOfCommentLabel.text = "(\(commentsData.count))"
             cell.inputText.delegate = self
             cell.profilePicofCommentedUser.layer.cornerRadius = 17
             cell.profilePicofCommentedUser.layer.masksToBounds = true
@@ -112,13 +115,17 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         }else{
             
             let cell = Bundle.main.loadNibNamed("CommentsTableViewCell", owner: self, options: nil)?.first as! CommentsTableViewCell
-            cell.commentLabe.text = data1[indexPath.row].cmt
-            cell.userImage.image = UIImage(named: data1[indexPath.row].imag!)
+            let cmt = commentsData[indexPath.row]
+            cell.commentLabe.text = cmt.text
             
+            if let profileImageUrl = cmt.image {
+                cell.userImage.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+            }
+            
+            //cell.userImage.image = UIImage(named: cmt.image!)
             cell.userImage.layer.cornerRadius = 17
             cell.userImage.layer.masksToBounds = true
             //cell.userImage.backgroundColor = UIColor.black
-            
             tableView.estimatedRowHeight = 50
             tableView.rowHeight = UITableViewAutomaticDimension
             return cell
@@ -129,27 +136,28 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         let ndx = IndexPath(row: 0, section: 0)
         let cell = self.tableView.cellForRow(at:ndx) as! ProfileDetailsTableViewCell
         let txt = cell.inputText.text!
-        data1.append(cmtData(name:notice!, cmt: txt, imag: image!))
+       
+       let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateString = formatter.string(from: Date())
+        let message = ref.child("Comments").child(postID!).childByAutoId()
         
-    // Adding comment message to firebase database
-        let ref = Database.database().reference()
-        let message = ref.child("Messages").childByAutoId().child(uid!)
-        let values = ["name":userN,"text":txt]
+        let values = ["name":self.currentuser.name,"uid":userID,"image":currentuser.profileImageUrl,"date":dateString,"text":txt]
         message.updateChildValues(values, withCompletionBlock: { (err, ref) in
             if err != nil{
                 print(err)
                 return
             }
+            self.tableView.reloadData()
         })
-        self.tableView.reloadData()
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             tableView.rowHeight = UITableViewAutomaticDimension
             return tableView.rowHeight
         }else{
-           var resStr = data1[indexPath.row].cmt!
-            if resStr.characters.count > 38{
+           var resStr = commentsData[indexPath.row].text
+            if (resStr?.characters.count)! > 38{
                 tableView.rowHeight = UITableViewAutomaticDimension
                 return tableView.rowHeight
             }else{
@@ -162,17 +170,33 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         let storyBoard = UIStoryboard(name:"Main",bundle:nil);
         let vcOBJ = storyBoard.instantiateViewController(withIdentifier: "UserInfoViewController") as! UserInfoViewController
         vcOBJ.title = "User Information"
-        vcOBJ.name = data1[indexPath.row].name
-        vcOBJ.image = data1[indexPath.row].imag
+        vcOBJ.uid = commentsData[indexPath.row].uid
         navigationController?.pushViewController(vcOBJ, animated: true)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addComments()
         return true
     }
-        func cancelButtonTapped(_ sender: Any) {
+    func cancelButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
+    func fetchComments() {
+        
+            self.ref.child("Comments").child(self.postID!).observe(.childAdded, with: {(DataSnapshot) in
+                if let dictionary = DataSnapshot.value as? [String:AnyObject]{
+                    print("123\(dictionary)")
+                    
+                    let user = Comments()
+                    user.setValuesForKeys(dictionary)
+                    print("123\(user.text)")
+                    self.commentsData.append(user)
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
+                    
+                }
+            })
+    }
     
 }

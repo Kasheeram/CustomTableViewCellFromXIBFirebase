@@ -15,27 +15,21 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var mySegmentControl: UISegmentedControl!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var searchController: UISearchBar!
-    //var cData = [[String:[String]]]()
 
     let cellData = ["kashee","Rajendra","Mohan","Venky","Ankit"]
-    var cellData2 = ["gandhi ji","barak ubama","steve jobs","sundar pichai","modi ji"]
-    let images:[String:String] = ["gandhi ji":"gandhi","barak ubama":"barak ubama","steve jobs":"steve_jobs","sundar pichai":"sundar-pichai","modi ji":"modi"]
-    var descriptns = ["Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.","Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.","Python’s standard library is very extensive, offering a wide range of facilities as indicated by the long table of contents listed below. The library contains built-in modules (written in C)","Swift is a fantastic way to write software, whether it’s for phones, desktops, servers, or anything else that runs code. It’s a safe.","JDK 7 is a superset of JRE 7, and contains everything that is in JRE 7, plus tools such as the compilers and debuggers necessary for developing applets and applications."]
-    
-   var searchActive : Bool = false
-   var filteredData: [String]!
+    var searchActive : Bool = false
+    var filteredData: [String]!
     var userN:String?
     var uid:String?
-    
-    var users = [User]()
+    var studentBoard = [StudentBoard]()
+    var postID = [String]()
     
     let ref = Database.database().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-         fetchUser()
         
-//        let ref = Database.database().reference()
+        fetchUser()
         Auth.auth().addStateDidChangeListener { (auth, user) in
             guard let uid = user?.uid else{
                 return
@@ -47,10 +41,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             })
         }
         
-        
-
-    
-        filteredData = cellData2
         searchController.delegate = self
         mySegmentControl.setImage(textEmbededImage(image: UIImage(named:"graduate-cap")!, string: "UNIVERSITY BOARD", color: UIColor.black), forSegmentAt: 0)
         mySegmentControl.setImage(textEmbededImage(image: UIImage(named:"male-university-graduate-silhouette-with-the-cap")!, string: "STUDENT BOARD", color: UIColor.black), forSegmentAt: 1)
@@ -103,9 +93,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return users.count
+        return studentBoard.count
         
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if mySegmentControl.selectedSegmentIndex == 0{
@@ -120,13 +111,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
             if indexPath.row == 0{
                 let cell = Bundle.main.loadNibNamed("SponseredTableViewCell", owner: self, options: nil)?.first as! SponseredTableViewCell
-               let user = users[indexPath.row]
+               let user = studentBoard[indexPath.row]
                 cell.nameLabel.text = user.name
+                cell.dateLabel.text = user.date
                 
                 //cell.nameLabel.text = filteredData[indexPath.row]
 //                cell.profilePic.image = UIImage(named:images[filteredData[indexPath.row]]!)
                 
-                if let profileImageUrl = user.profileImageUrl {
+                if let profileImageUrl = user.imageUrl {
                     cell.profilePic.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
                     
                 }
@@ -139,12 +131,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 return cell
             }else{
             let cell = Bundle.main.loadNibNamed("StudentTableViewCell", owner: self, options: nil)?.first as! StudentTableViewCell
-                let user = users[indexPath.row]
+                let user = studentBoard[indexPath.row]
                 cell.postNameLabel.text = user.name
+                cell.dateLabel.text = user.date
             //cell.postNameLabel.text = filteredData[indexPath.row]
            // cell.profilePicImageView.image = UIImage(named:images[filteredData[indexPath.row]]!)
             
-                if let profileImageUrl = user.profileImageUrl {
+                if let profileImageUrl = user.imageUrl {
                     cell.profilePicImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
                 }
                 
@@ -176,11 +169,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         if mySegmentControl.selectedSegmentIndex == 1{
             let storyBoard = UIStoryboard(name:"Main",bundle:nil);
             let vcOBJ = storyBoard.instantiateViewController(withIdentifier: "StudentBoardTableViewController") as! StudentBoardTableViewController
-            vcOBJ.notice = filteredData[indexPath.row]
-            vcOBJ.image = images[filteredData[indexPath.row]]
-            vcOBJ.desc = descriptns[indexPath.row]
-            vcOBJ.userN = self.userN
+            vcOBJ.notice = studentBoard[indexPath.row].tital
+//            vcOBJ.image = images[filteredData[indexPath.row]]
+//            vcOBJ.desc = descriptns[indexPath.row]
+            let detail = studentBoard[indexPath.row]
+            vcOBJ.image = detail.imageUrl
+            vcOBJ.desc = detail.desc
+//            vcOBJ.userN = self.userN
+            vcOBJ.userN = detail.name
+            vcOBJ.date = detail.date
             vcOBJ.uid = self.uid
+            vcOBJ.postID = postID[indexPath.row]
             navigationController?.pushViewController(vcOBJ, animated: true)
             
         }
@@ -209,7 +208,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
+        //fetchUser()
     }
     
     @IBAction func segmentActions(_ sender: Any) {
@@ -221,17 +220,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // When there is no text, filteredData is the same as the original data
-        // When user has entered text into the search box
-        // Use the filter method to iterate over all items in the data array
-        // For each item, return true if the item should be included and false if the
-        // item should NOT be included
-        filteredData = searchText.isEmpty ? cellData2 : cellData2.filter { (item: String) -> Bool in
-            // If dataItem matches the searchText, return true to include it
-            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-        }
-        print("filteredData=\(filteredData)")
-        tableView.reloadData()
+//        filteredData = searchText.isEmpty ? cellData2 : cellData2.filter { (item: String) -> Bool in
+//            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+//        }
+//        print("filteredData=\(filteredData)")
+//        tableView.reloadData()
     }
     
     @IBAction func addPostButtonTapped(_ sender: Any) {
@@ -243,25 +236,36 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func setResultOfBusinessLogic(valueSent: [String]){
-        filteredData.append("gandhi ji")
-        cellData2 = filteredData
-        descriptns.append(valueSent[0])
-        self.tableView.reloadData()
+//        filteredData.append("gandhi ji")
+//        cellData2 = filteredData
+//        descriptns.append(valueSent[0])
+//        self.tableView.reloadData()
+        //fetchUser()
+        
     }
     
     func fetchUser(){
-        self.ref.child("Users").observe(.childAdded, with: {(DataSnapshot) in
-            if let dictionary = DataSnapshot.value as? [String:AnyObject]{
-                let user = User()
-                user.setValuesForKeys(dictionary)
-               // print(user.name,user.email)
-                self.users.append(user)
-                DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                })
-               
+        self.ref.child("Posts").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                for child in result {
+                    let userKey = child.key
+                    self.postID.append(userKey)
+                    self.ref.child("Posts").child(userKey).observe(.childAdded, with: {(DataSnapshot) in
+                        if let dictionary = DataSnapshot.value as? [String:AnyObject]{
+                            let user = StudentBoard()
+                            user.setValuesForKeys(dictionary)
+                            self.studentBoard.append(user)
+                            DispatchQueue.main.async(execute: {
+                                self.tableView.reloadData()
+                            })
+                        }
+                    })
+                }
             }
         })
+        
     }
+  
+    
 }
 

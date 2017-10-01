@@ -222,7 +222,6 @@ class AddPostViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                 guard let uid = user?.uid else{
                     return
                 }
-                //self.uid = uid
                 
             let cUser = CurrentUser()
             let ref = Database.database().reference()
@@ -231,8 +230,6 @@ class AddPostViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
                     if let userDict = snapshot.value as? [String:AnyObject] {
                         cUser.setValuesForKeys(userDict)
                     }
-                   
-                    
                     let posts = ref.child("Posts").childByAutoId().child(uid)
                     let formatter = DateFormatter()
                     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -247,22 +244,8 @@ class AddPostViewController: UIViewController,UIPickerViewDelegate,UIPickerViewD
 
                 })
                 
-                
-                
-                
             }
 
-                
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
                 let postData = [descTxtView.text,categoryTxtField.text,priority,titalTxtField.text]
                 myProtocol?.setResultOfBusinessLogic(valueSent: postData as! [String])
                 navigationController?.popViewController(animated: true)

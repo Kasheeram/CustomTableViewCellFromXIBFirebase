@@ -25,11 +25,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func LoginButtonTapped(_ sender: Any) {
-//        let storyBoard = UIStoryboard(name:"Main",bundle:nil)
-//        let vcOBJ = storyBoard.instantiateViewController(withIdentifier: "Navigation")
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        appDelegate.window?.rootViewController = vcOBJ
-        
         
         if (emailId.text?.characters.count)! > 0 && (password.text?.characters.count)! > 0{
             

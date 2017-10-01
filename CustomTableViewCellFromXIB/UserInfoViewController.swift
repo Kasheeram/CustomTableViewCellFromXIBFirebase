@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserInfoViewController: UIViewController {
     @IBOutlet weak var userProfilePic: UIImageView!
@@ -17,25 +18,61 @@ class UserInfoViewController: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var nameView: UIView!
     
-    var name:String?
-    var image:String?
-    
-    let userInfo = ["gandhi ji":["gandhi ji","SB Colleage of engineering","Sam_123","john@gmail.com","9971474399"],"barak ubama":["barak obama","US Colleage of engineering","barak_123","barak@gmail.com","9576474399"],"steve jobs":["steve obs","SC Colleage of engineering","steve_123","steve@gmail.com","9976474399"],"sundar pichai":["Sundar pichai","UIO Colleage of engineering","sunder_123","sunder@gmail.com","9971984399"],"modi ji":["Narendra modi","KAS Colleage of engineering","modi_123","modi@gmail.com","9971489399"]]
-    
-    
+    var uid:String?    
+    let ref = Database.database().reference()
+    let user = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        ref.child("Users").child(uid!).observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String:AnyObject]{
+                self.user.setValuesForKeys(dictionary)
+                print("1234\(self.user.name)")
+            }
+            
+            self.addImagetoNavBar()
+            self.addUserInformation()
+        })
+        
+      }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func addUserInformation(){
+        userName.text = user.name
+        collegeName.text = user.college
+        branchLabel.text = user.branch
+        emailLabel.text = user.email
+        phoneLabel.text = user.phone
+        if let profileImageUrl = user.profileImageUrl {
+            userProfilePic.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+        }
+        userProfilePic.layer.cornerRadius = 30
+        userProfilePic.layer.masksToBounds = true
+        
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addImagetoNavBar(){
         
         let button = UIButton.init(type: .custom)
         // button.setImage(UIImage.init(named: image!), for: UIControlState.normal)
         //button.addTarget(self, action:#selector(self), for: UIControlEvents.touchUpInside)
         // adding left image to barbutton item
         button.frame = CGRect.init(x: 0, y: 0, width: 35, height: 35) //CGRectMake(0, 0, 30, 30)
-        let leftImageView = UIImageView(image: UIImage(named:image!))
+        let leftImageView = UIImageView(image: UIImage(named:"gandhi"))
         leftImageView.frame = CGRect(x: 0, y: 0, width: button.frame.width-5, height: button.frame.size.height-5)
+        
+        if let profileImageUrl = user.profileImageUrl {
+            leftImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+        }
         button.addSubview(leftImageView)
         
         button.imageView?.contentMode = .scaleAspectFill
@@ -54,36 +91,13 @@ class UserInfoViewController: UIViewController {
         let barButton = UIBarButtonItem.init(customView: button)
         self.navigationItem.rightBarButtonItem = barButton
         
-        
         var bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0.0, y: nameView.frame.height - 1, width: nameView.frame.width, height: 0.5)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         nameView.layer.addSublayer(bottomLine)
-        
-        addUserInformation()
-        
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func addUserInformation(){
-        let userInf = userInfo[name!]
-        userName.text = userInf?[0]
-        collegeName.text = userInf?[1]
-        branchLabel.text = userInf?[2]
-        emailLabel.text = userInf?[3]
-        phoneLabel.text = userInf?[4]
-        userProfilePic.image = UIImage(named:image!)
-        userProfilePic.layer.cornerRadius = 30
-        userProfilePic.layer.masksToBounds = true
-        
-    }
     
-    @IBAction func closeButtonTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
     
 }

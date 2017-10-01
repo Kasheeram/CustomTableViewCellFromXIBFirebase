@@ -9,16 +9,16 @@
 import Foundation
 
 
-class dataComment{
-    var datacomment:[cmtData]?
-    
-   func putdata(datacomment:[cmtData]) {
-        self.datacomment = datacomment
-    }
-    
-    func getData()->[cmtData]{
-        return datacomment!
-    }
-}
+//class dataComment{
+//    var datacomment:[cmtData]?
+//    
+//   func putdata(datacomment:[cmtData]) {
+//        self.datacomment = datacomment
+//    }
+//    
+//    func getData()->[cmtData]{
+//        return datacomment!
+//    }
+//}
 
 

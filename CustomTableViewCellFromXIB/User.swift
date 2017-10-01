@@ -18,3 +18,21 @@ class User: NSObject {
 }
 
 
+class StudentBoard: NSObject {
+    var name:String?
+    var tital:String?
+    var desc:String?
+    var uid:String?
+    var date:String?
+    var category:String?
+    var imageUrl:String?
+}
+
+class Comments: NSObject {
+    var uid:String?
+    var text:String?
+    var image:String?
+    var date:String?
+    var name:String?
+}
+
