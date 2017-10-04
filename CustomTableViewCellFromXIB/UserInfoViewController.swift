@@ -17,6 +17,7 @@ class UserInfoViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var popUpView: UIView!
     
     var uid:String?    
     let ref = Database.database().reference()
@@ -24,6 +25,9 @@ class UserInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        popUpView.layer.cornerRadius = 10;
+        popUpView.layer.masksToBounds = true
         
         ref.child("Users").child(uid!).observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String:AnyObject]{
@@ -57,7 +61,8 @@ class UserInfoViewController: UIViewController {
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+       // navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     func addImagetoNavBar(){

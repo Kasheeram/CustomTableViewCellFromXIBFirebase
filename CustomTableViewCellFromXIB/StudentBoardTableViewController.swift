@@ -164,7 +164,8 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         let vcOBJ = storyBoard.instantiateViewController(withIdentifier: "UserInfoViewController") as! UserInfoViewController
         vcOBJ.title = "User Information"
         vcOBJ.uid = commentsData[indexPath.row].uid
-        navigationController?.pushViewController(vcOBJ, animated: true)
+       // navigationController?.pushViewController(vcOBJ, animated: true)
+        present(vcOBJ, animated: true, completion: nil)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addComments()
