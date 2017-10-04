@@ -40,7 +40,7 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         
         let button = UIButton.init(type: .custom)
        // button.setImage(UIImage.init(named: image!), for: UIControlState.normal)
-        //button.addTarget(self, action:#selector(self), for: UIControlEvents.touchUpInside)
+        button.addTarget(self, action:#selector(StudentBoardTableViewController().profilePicClicked), for: UIControlEvents.touchUpInside)
     // adding left image to barbutton item
         button.frame = CGRect.init(x: 0, y: 0, width: 35, height: 35) //CGRectMake(0, 0, 30, 30)
         let leftImageView = UIImageView()
@@ -192,6 +192,15 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
                     
                 }
             })
+    }
+    
+    func profilePicClicked(){
+        let storyBoard = UIStoryboard(name:"Main",bundle:nil);
+        let vcOBJ = storyBoard.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        //vcOBJ.title = "User Information"
+       // vcOBJ.uid = commentsData[indexPath.row].uid
+        // navigationController?.pushViewController(vcOBJ, animated: true)
+        present(vcOBJ, animated: true, completion: nil)
     }
     
 }

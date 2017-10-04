@@ -24,6 +24,7 @@
 		92282C8C1F7CD497007B8C5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92282C8B1F7CD497007B8C5E /* LoginViewController.swift */; };
 		92282C8E1F7CDB34007B8C5E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92282C8D1F7CDB34007B8C5E /* RegisterViewController.swift */; };
 		9229F3341F7A5DFD00ED62B0 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229F3331F7A5DFD00ED62B0 /* AddPostViewController.swift */; };
+		9235582B1F84E56900615D67 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235582A1F84E56900615D67 /* SettingsViewController.swift */; };
 		926A5C091F7E3AFB00891F45 /* RegisterViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A5C081F7E3AFB00891F45 /* RegisterViewController+handlers.swift */; };
 		926A5C0C1F7E6CD900891F45 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A5C0B1F7E6CD900891F45 /* Extensions.swift */; };
 		9275E1851F73870A0051651B /* StudentBoardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9275E1841F73870A0051651B /* StudentBoardTableViewController.swift */; };
@@ -80,6 +81,7 @@
 		92282C8B1F7CD497007B8C5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		92282C8D1F7CDB34007B8C5E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9229F3331F7A5DFD00ED62B0 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		9235582A1F84E56900615D67 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		926A5C081F7E3AFB00891F45 /* RegisterViewController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterViewController+handlers.swift"; sourceTree = "<group>"; };
 		926A5C0B1F7E6CD900891F45 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9275E1841F73870A0051651B /* StudentBoardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentBoardTableViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				2B4C67201F72419900BCA39B /* ViewController.swift */,
 				9275E1831F737E900051651B /* Board */,
 				2B4C67221F72419900BCA39B /* Main.storyboard */,
+				9235582A1F84E56900615D67 /* SettingsViewController.swift */,
 				926A5C081F7E3AFB00891F45 /* RegisterViewController+handlers.swift */,
 				92B026321F7D1DBC00AAD65F /* User.swift */,
 				92282C8D1F7CDB34007B8C5E /* RegisterViewController.swift */,
@@ -436,6 +439,7 @@
 				2B4C67521F7248FD00BCA39B /* StudentTableViewCell.swift in Sources */,
 				9229F3341F7A5DFD00ED62B0 /* AddPostViewController.swift in Sources */,
 				926A5C0C1F7E6CD900891F45 /* Extensions.swift in Sources */,
+				9235582B1F84E56900615D67 /* SettingsViewController.swift in Sources */,
 				9275E1881F7387B90051651B /* ProfileDetailsTableViewCell.swift in Sources */,
 				92282C8E1F7CDB34007B8C5E /* RegisterViewController.swift in Sources */,
 				9275E18C1F7387D10051651B /* CommentsTableViewCell.swift in Sources */,

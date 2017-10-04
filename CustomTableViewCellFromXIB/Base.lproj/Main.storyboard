@@ -51,7 +51,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVr-ea-tGY">
-                                <rect key="frame" x="329" y="116" width="38" height="38"/>
+                                <rect key="frame" x="329" y="121" width="38" height="38"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="aCO-TB-92g"/>
@@ -73,7 +73,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Qq9-mA-4w7" secondAttribute="bottom" id="DxG-QL-PcM"/>
                             <constraint firstItem="Qq9-mA-4w7" firstAttribute="top" secondItem="TCb-L5-xQo" secondAttribute="bottom" constant="6" id="HUx-5f-t3w"/>
                             <constraint firstAttribute="trailing" secondItem="fuZ-Oq-3aG" secondAttribute="trailing" constant="8" id="JW4-7x-zyY"/>
-                            <constraint firstItem="pVr-ea-tGY" firstAttribute="top" secondItem="fuZ-Oq-3aG" secondAttribute="bottom" constant="9" id="LZf-hz-igB"/>
+                            <constraint firstItem="pVr-ea-tGY" firstAttribute="top" secondItem="fuZ-Oq-3aG" secondAttribute="bottom" constant="14" id="LZf-hz-igB"/>
                             <constraint firstItem="Qq9-mA-4w7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VY2-uD-JEV"/>
                             <constraint firstItem="pVr-ea-tGY" firstAttribute="leading" secondItem="TCb-L5-xQo" secondAttribute="trailing" constant="5" id="h99-s3-MS7"/>
                             <constraint firstItem="TCb-L5-xQo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="pHL-pm-b2W"/>
@@ -414,6 +414,7 @@
                         <outlet property="submitButton" destination="HI5-rd-7N8" id="asu-Yn-wlX"/>
                         <outlet property="titalTxtField" destination="BH4-OM-dNL" id="Vgp-Zw-2o8"/>
                         <segue destination="xyg-d5-2dr" kind="presentation" id="97W-kn-9BU"/>
+                        <segue destination="SAi-Eb-2Br" kind="presentation" id="Bc5-jo-Tef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="die-vj-Qyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -662,6 +663,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wru-Fz-vJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2736.8000000000002" y="196.55172413793105"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="RbZ-t7-QDW">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="SAi-Eb-2Br" customClass="SettingsViewController" customModule="CustomTableViewCellFromXIB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nvV-XQ-fe2"/>
+                        <viewControllerLayoutGuide type="bottom" id="P8y-t1-A9l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6fx-cm-fAl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fD-ma-9ds">
+                                <rect key="frame" x="282" y="63" width="93" height="119"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGc-tT-bt5">
+                                        <rect key="frame" x="0.0" y="0.0" width="93" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="AfL-yW-EF7"/>
+                                            <constraint firstAttribute="width" constant="93" id="zid-51-YqJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrV-J5-eN4">
+                                        <rect key="frame" x="0.0" y="40" width="93" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="93" id="RQi-V0-LMV"/>
+                                            <constraint firstAttribute="height" constant="39" id="skQ-1c-cBd"/>
+                                        </constraints>
+                                        <state key="normal" title="T&amp;C">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sr6-51-EGL">
+                                        <rect key="frame" x="0.0" y="80" width="93" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="1hH-Nk-d4P"/>
+                                            <constraint firstAttribute="width" constant="93" id="psb-wK-YAY"/>
+                                        </constraints>
+                                        <state key="normal" title="Logout">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="pGc-tT-bt5" firstAttribute="top" secondItem="1fD-ma-9ds" secondAttribute="top" id="2VW-Uk-hhp"/>
+                                    <constraint firstAttribute="trailing" secondItem="pGc-tT-bt5" secondAttribute="trailing" id="49N-9r-EiL"/>
+                                    <constraint firstItem="pGc-tT-bt5" firstAttribute="leading" secondItem="1fD-ma-9ds" secondAttribute="leading" id="COQ-Jk-VlO"/>
+                                    <constraint firstItem="Sr6-51-EGL" firstAttribute="leading" secondItem="1fD-ma-9ds" secondAttribute="leading" id="JHK-Vf-ZCd"/>
+                                    <constraint firstItem="yrV-J5-eN4" firstAttribute="leading" secondItem="1fD-ma-9ds" secondAttribute="leading" id="PPK-wP-y87"/>
+                                    <constraint firstAttribute="bottom" secondItem="Sr6-51-EGL" secondAttribute="bottom" id="Rkj-JD-TAu"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sr6-51-EGL" secondAttribute="trailing" id="Sc8-DV-iSx"/>
+                                    <constraint firstAttribute="trailing" secondItem="yrV-J5-eN4" secondAttribute="trailing" id="Toc-ic-xpb"/>
+                                    <constraint firstItem="Sr6-51-EGL" firstAttribute="top" secondItem="yrV-J5-eN4" secondAttribute="bottom" constant="1" id="al6-FR-jVm"/>
+                                    <constraint firstAttribute="height" constant="119" id="bay-4P-hWj"/>
+                                    <constraint firstItem="yrV-J5-eN4" firstAttribute="top" secondItem="pGc-tT-bt5" secondAttribute="bottom" constant="1" id="beF-lo-RaT"/>
+                                    <constraint firstAttribute="width" constant="93" id="ibT-xp-XhT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1fD-ma-9ds" secondAttribute="trailing" id="Xc9-Ad-0XA"/>
+                            <constraint firstItem="1fD-ma-9ds" firstAttribute="top" secondItem="6fx-cm-fAl" secondAttribute="top" constant="63" id="kgX-Pg-h7X"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="TCButton" destination="yrV-J5-eN4" id="5Vf-Hm-1gm"/>
+                        <outlet property="logoutButton" destination="Sr6-51-EGL" id="KFI-RF-0Dv"/>
+                        <outlet property="profileView" destination="1fD-ma-9ds" id="kFO-sc-crF"/>
+                        <outlet property="settingsButton" destination="pGc-tT-bt5" id="PM2-Ca-ZAO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dVx-9k-0am" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3461.5999999999999" y="196.55172413793105"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="A7y-z1-M2E">
