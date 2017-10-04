@@ -43,7 +43,10 @@ class StudentBoardTableViewController: UITableViewController,UITextFieldDelegate
         //button.addTarget(self, action:#selector(self), for: UIControlEvents.touchUpInside)
     // adding left image to barbutton item
         button.frame = CGRect.init(x: 0, y: 0, width: 35, height: 35) //CGRectMake(0, 0, 30, 30)
-        let leftImageView = UIImageView(image: UIImage(named:image!))
+        let leftImageView = UIImageView()
+        if let profileImageUrl = image {
+            leftImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+        }
         leftImageView.frame = CGRect(x: 0, y: 0, width: button.frame.width-5, height: button.frame.size.height-5)
         button.addSubview(leftImageView)
         button.imageView?.contentMode = .scaleAspectFill

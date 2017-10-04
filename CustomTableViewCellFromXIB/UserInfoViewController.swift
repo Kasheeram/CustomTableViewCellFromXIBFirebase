@@ -26,7 +26,7 @@ class UserInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        popUpView.layer.cornerRadius = 10;
+        popUpView.layer.cornerRadius = 15
         popUpView.layer.masksToBounds = true
         
         ref.child("Users").child(uid!).observe(.value, with: { (snapshot) in
